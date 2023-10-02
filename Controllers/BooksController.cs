@@ -7,10 +7,13 @@ using System.Security.Cryptography.X509Certificates;
 
 public class BooksController : Controller
 {
-    //constructor
-    public BooksController()
-    {
+    //define a global variable _context
+    private readonly BooksDb _context;
 
+    //constructor
+    public BooksController(BooksDb context)
+    {
+        _context = context;
     }
 
     //GET: api/books
