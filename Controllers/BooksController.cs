@@ -1,5 +1,7 @@
-using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
+namespace firstAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -41,12 +43,12 @@ public class BooksController : Controller
     {
         _context.Books.Add(book);
         await _context.SaveChangesAsync();
-        return CreatedAction("GetBook", new {id = book.Id},book);
+        return CreatedAtAction("GetBook", new {id = book.Id},book);
     }
 
     //PUT api/books/id
     [HttpPut("{id}")]
-    public sync Task<IActionResult> PutBook(int id, Book book)
+    public async Task<IActionResult> PutBook(int id, Book book)
     {
         if(id != book.Id)
             return BadRequest();
