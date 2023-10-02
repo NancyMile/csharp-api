@@ -58,7 +58,10 @@ public class BooksController : Controller
         if(bookInDb == null)
             return NotFound();
 
-        _context.Entry(book).State = EntityState.Modified;
+        bookInDb.Title = book.Title;
+        bookInDb.Author = book.Author;
+        bookInDb.Available = book.Available;
+
         await _context.SaveChangesAsync();
         return NoContent();
     }
